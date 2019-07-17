@@ -29,6 +29,7 @@ class Pallete extends Component {
                 name={color.name}
                 key={color.id}
                 moreUrl={`${id}/${color.id}`}
+                showLink
             />
         ))
         return (
