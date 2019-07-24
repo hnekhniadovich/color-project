@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton';
 import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import styles from './styles/PaletteFormNavStyles';
 
 class PaletteFormNav extends Component {
@@ -40,7 +39,8 @@ class PaletteFormNav extends Component {
     }
 
     render() {
-        const { classes, open, palettes, handleSubmit } = this.props;
+        const { classes, open, palettes, handleSubmit, handleDrawerOpen } = this.props;
+        const { formShowing } = this.state;
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -55,7 +55,7 @@ class PaletteFormNav extends Component {
                         <IconButton
                             color="inherit"
                             aria-label="Open drawer"
-                            onClick={this.props.handleDrawerOpen}
+                            onClick={handleDrawerOpen}
                             className={classNames(classes.menuButton, open && classes.hide)}
                         >
                         <AddToPhotosIcon />
@@ -66,12 +66,12 @@ class PaletteFormNav extends Component {
                     </Toolbar>
                     <div className={classes.navBtns}>
                         <Link to="/"><Button variant="contained" color="secondary" className={classes.button}>Go Back</Button></Link>
-                        <Button variant="contained" color="primary" onClick={this.handleClickOpen} onClick={this.showForm} className={classes.button}>
+                        <Button variant="contained" color="primary" onClick={this.showForm} className={classes.button}>
                             Save
                         </Button>
                     </div>
                 </AppBar>
-                {this.state.formShowing && ( 
+                {formShowing && ( 
                     <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} hideForm={this.hideForm}/>
                 )}
             </div>
